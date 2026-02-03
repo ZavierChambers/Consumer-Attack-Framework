@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Consumer ATT&CK-Lite — Phase 1</title>
+
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f4f6f8;
+  color:#111827;
+}
+
+header {
+  background:#005ea8;
+  color:white;
+  padding:20px;
+}
+
+header h1 {
+  margin:0;
+  font-size:20px;
+}
+
+.container {
+  max-width:1000px;
+  margin:20px auto;
+  padding:0 20px;
+}
+
+.card {
+  background:white;
+  padding:15px;
+  margin-bottom:15px;
+  border-left:4px solid #005ea8;
+  border-radius:6px;
+}
+
+.card h3 {
+  margin:0 0 6px 0;
+}
+
+.muted {
+  color:#6b7280;
+  font-size:14px;
+}
+
+footer {
+  text-align:center;
+  font-size:13px;
+  color:#6b7280;
+  margin:30px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Consumer ATT&CK-Lite — Phase 1 Prototype</h1>
+  <div style="font-size:13px;">Foundation Build • Static • Offline • MITRE ID Mapping</div>
+</header>
+
+<div class="container">
+
+  <h2>Initial Mapped Techniques</h2>
+  <div id="grid"></div>
+
+</div>
+
+<footer>
+Phase 1: Core Data Model + Basic Rendering Established
+</footer>
+
+<script>
+
+// PHASE 1 DATA MODEL
+// Basic structure validation only
+const techniques = [
+{
+  title: "Phishing (Email Links)",
+  attackId: "T1566.001",
+  description: "Fraudulent emails designed to trick users into revealing credentials.",
+  risk: "Account takeover, credential theft.",
+  mitigations: "Enable MFA, verify senders, avoid clicking unknown links.",
+  detection: "Urgent language, mismatched URLs."
+},
+{
+  title: "Credential Stuffing",
+  attackId: "T1110.004",
+  description: "Using breached credentials across multiple services.",
+  risk: "Multiple account compromise.",
+  mitigations: "Use unique passwords and a password manager.",
+  detection: "Unexpected login alerts from new devices."
+},
+{
+  title: "Ransomware",
+  attackId: "T1486",
+  description: "Malware that encrypts files and demands payment.",
+  risk: "Data loss and financial extortion.",
+  mitigations: "Maintain offline backups and keep systems updated.",
+  detection: "Encrypted files, ransom note appearing."
+}
+];
+
+// PHASE 1 RENDER FUNCTION
+function renderTechniques() {
+  const grid = document.getElementById("grid");
+
+  techniques.forEach(t => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h3>${t.title} <span class="muted">• ATT&CK: ${t.attackId}</span></h3>
+      <p><strong>Description:</strong> ${t.description}</p>
+      <p><strong>Risk:</strong> ${t.risk}</p>
+      <p><strong>Mitigations:</strong> ${t.mitigations}</p>
+      <p><strong>Detection Signs:</strong> ${t.detection}</p>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+// INITIAL LOAD
+renderTechniques();
+
+</script>
+
+</body>
+</html>
